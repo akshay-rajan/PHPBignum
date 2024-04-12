@@ -251,8 +251,8 @@ class BigFloat extends BigNum
 
     public function sin() {
         $x = $this;
-        $sin = $this; // Initialize sin with the first term of the series
-        $term = $this; // Initialize term with the first term of the series
+        $sin = $this; 
+        $term = $this;
 
         $maxIterations = 100; // Maximum number of terms to calculate
 
