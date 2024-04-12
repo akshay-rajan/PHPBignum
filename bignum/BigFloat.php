@@ -248,4 +248,25 @@ class BigFloat extends BigNum
 
         return $this;
     }
+
+    public function sin() {
+        $x = $this;
+        $sin = $this; // Initialize sin with the first term of the series
+        $term = $this; // Initialize term with the first term of the series
+
+        $maxIterations = 100; // Maximum number of terms to calculate
+
+        for ($i = 1; $i <= $maxIterations; $i++) {
+            $term = $term->multiply($x)->multiply($x) // x^2
+                          ->div(new BigFloat((2 * $i) * (2 * $i + 1))); // divide by (2n)*(2n+1)
+
+            if ($i % 2 == 0) {
+                $sin = $sin->add($term);
+            } else {
+                $sin = $sin->sub($term);
+            }
+        }
+
+        return $sin;
+    }
 }

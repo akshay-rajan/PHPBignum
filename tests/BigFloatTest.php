@@ -155,4 +155,20 @@ class BigFloatTest extends TestCase
             ['3.1415926535898', '180', '0.0174532'],
         ];
     }
+
+    public function testSin() {
+        $testCases = [
+            ['input' => '0', 'expected' => '0'],
+            ['input' => '1', 'expected' => '0.8414709848078965'], // sin(1) = 0.8414709848078965
+            ['input' => '3.141592653589793', 'expected' => '0'], // sin(pi) = 0
+        ];
+
+        foreach ($testCases as $testCase) {
+            $input = new BigFloat($testCase['input']);
+            $expected = new BigFloat($testCase['expected']);
+            $output = $input->sin();
+
+            $this->assertEquals($expected, $output, "sin({$testCase['input']}) should be {$testCase['expected']}");
+        }
+    }
 }
